@@ -5,6 +5,7 @@ using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
 using NHibernate.Event;
+using NHibernate.Search;
 using NHibernate.Search.Event;
 using SuperSchnell.CompanyDataProvider.Domain;
 using SuperSchnell.CompanyDataProvider.EntityUpdaters;
@@ -29,13 +30,26 @@ namespace SuperSchnell.CompanyDataProvider
             configuration.SetListener(ListenerType.PostInsert, new FullTextIndexEventListener());
             _sessionFactory = configuration.BuildSessionFactory();
         }
-        public void WrapQuery(ISessionQuery query)
+        public void WrapQuery(ISimpleQuery query)
         {
             using (var session = _sessionFactory.OpenSession())
             using (var tx = session.BeginTransaction())
             {
                 query.Execute(session);
                 tx.Commit();
+            }
+        }
+        public void WrapQuery(IFullQuery query)
+        {
+            using (var session = _sessionFactory.OpenSession())
+            {
+                var fullTextSession = Search.CreateFullTextSession(session);
+                using (var tx = fullTextSession.BeginTransaction())
+                {
+                    query.Execute(fullTextSession);
+                    tx.Commit();
+                }
+                
             }
         }
 

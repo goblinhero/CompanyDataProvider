@@ -51,7 +51,11 @@
   <ItemGroup>
     <Compile Include="Domain\IEntity.cs" />
     <Compile Include="EntityUpdaters\EntityUpdater.cs" />
-    <Compile Include="ISessionQuery.cs" />
+    <Compile Include="Helpers\ExtensionMethods.cs" />
+    <Compile Include="IFullTextQuery.cs" />
+    <Compile Include="ISimpleQuery.cs" />
+    <Compile Include="Mappings\Dto\DanishCompanyDtoMap.cs" />
+    <Compile Include="Queries\CompanyQuery.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="Domain\Address.cs" />
     <Compile Include="Domain\DanishCompany.cs" />
@@ -74,7 +78,12 @@
       <LastGenOutput>Errors.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SuperSchnell.CompanyDataProvider.Contracts\SuperSchnell.CompanyDataProvider.Contracts.csproj">
+      <Project>{EE0A88F7-921C-4352-B8B0-2C97DFEB78AF}</Project>
+      <Name>SuperSchnell.CompanyDataProvider.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

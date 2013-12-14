@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{12E5D164-3CD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSchnell.CompanyDataProvider.Web", "SuperSchnell.CompanyDataProvider.Web\SuperSchnell.CompanyDataProvider.Web.csproj", "{686711C5-E344-493B-831D-551F6E6D72FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSchnell.CompanyDataProvider.Contracts", "SuperSchnell.CompanyDataProvider.Contracts\SuperSchnell.CompanyDataProvider.Contracts.csproj", "{EE0A88F7-921C-4352-B8B0-2C97DFEB78AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{686711C5-E344-493B-831D-551F6E6D72FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{686711C5-E344-493B-831D-551F6E6D72FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{686711C5-E344-493B-831D-551F6E6D72FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE0A88F7-921C-4352-B8B0-2C97DFEB78AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE0A88F7-921C-4352-B8B0-2C97DFEB78AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE0A88F7-921C-4352-B8B0-2C97DFEB78AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE0A88F7-921C-4352-B8B0-2C97DFEB78AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

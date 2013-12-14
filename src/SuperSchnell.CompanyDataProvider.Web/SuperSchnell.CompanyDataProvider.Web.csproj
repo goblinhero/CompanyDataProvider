@@ -82,6 +82,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REST\CompanyService.cs" />
+    <Compile Include="REST\Requests\CompanySimpleSearch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">
@@ -90,6 +92,19 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SuperSchnell.CompanyDataProvider.Contracts\SuperSchnell.CompanyDataProvider.Contracts.csproj">
+      <Project>{ee0a88f7-921c-4352-b8b0-2c97dfeb78af}</Project>
+      <Name>SuperSchnell.CompanyDataProvider.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SuperSchnell.CompanyDataProvider\SuperSchnell.CompanyDataProvider.csproj">
+      <Project>{3FB740D8-D91C-45B3-9DAF-DE4F1B4D6DF0}</Project>
+      <Name>SuperSchnell.CompanyDataProvider</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="REST\Responses\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

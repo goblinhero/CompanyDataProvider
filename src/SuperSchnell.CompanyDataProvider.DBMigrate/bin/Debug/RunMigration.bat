@@ -1,1 +1,0 @@
-Migrate.exe -a SuperSchnell.CompanyDataProvider.DBMigrate.dll -db sqlserver2008 -c CompanyDataConnection > LastDBMigrate.log.txt 

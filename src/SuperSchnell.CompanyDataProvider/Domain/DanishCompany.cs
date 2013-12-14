@@ -8,7 +8,6 @@ namespace SuperSchnell.CompanyDataProvider.Domain
         public virtual string CompanyName { get; set; }
         public virtual Address Address { get; set; }
         public virtual string CVRNumber { get; set; }
-        public virtual int Version { get; set; }
 
         protected override IEnumerable<Rules.IRule<DanishCompany>> GetValidationRules()
         {
