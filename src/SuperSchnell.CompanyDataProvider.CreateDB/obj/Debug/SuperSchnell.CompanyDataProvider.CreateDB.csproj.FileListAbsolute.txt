@@ -1,0 +1,6 @@
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.CreateDB\bin\Debug\SuperSchnell.CompanyDataProvider.CreateDB.exe.config
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.CreateDB\bin\Debug\SuperSchnell.CompanyDataProvider.CreateDB.exe
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.CreateDB\bin\Debug\SuperSchnell.CompanyDataProvider.CreateDB.pdb
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.CreateDB\obj\Debug\SuperSchnell.CompanyDataProvider.CreateDB.csprojResolveAssemblyReference.cache
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.CreateDB\obj\Debug\SuperSchnell.CompanyDataProvider.CreateDB.exe
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.CreateDB\obj\Debug\SuperSchnell.CompanyDataProvider.CreateDB.pdb

@@ -1,0 +1,11 @@
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\bin\Debug\Migrate.exe.config
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\bin\Debug\FluentMigrator.Runner.dll
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\bin\Debug\Migrate.exe
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\bin\Debug\RunMigration.bat
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\bin\Debug\SuperSchnell.CompanyDataProvider.DBMigrate.dll.config
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\bin\Debug\SuperSchnell.CompanyDataProvider.DBMigrate.dll
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\bin\Debug\SuperSchnell.CompanyDataProvider.DBMigrate.pdb
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\bin\Debug\FluentMigrator.dll
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\obj\Debug\SuperSchnell.CompanyDataProvider.DBMigrate.csprojResolveAssemblyReference.cache
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\obj\Debug\SuperSchnell.CompanyDataProvider.DBMigrate.dll
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider.DBMigrate\obj\Debug\SuperSchnell.CompanyDataProvider.DBMigrate.pdb

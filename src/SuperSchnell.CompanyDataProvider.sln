@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSchnell.CompanyDataProvider", "SuperSchnell.CompanyDataProvider\SuperSchnell.CompanyDataProvider.csproj", "{3FB740D8-D91C-45B3-9DAF-DE4F1B4D6DF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSchnell.CompanyDataProvider.CreateDB", "SuperSchnell.CompanyDataProvider.CreateDB\SuperSchnell.CompanyDataProvider.CreateDB.csproj", "{B382A618-73DB-4AAE-882A-D48956CCFEEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{9881F839-C092-4182-9258-2F411333F351}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSchnell.CompanyDataProvider.DBMigrate", "SuperSchnell.CompanyDataProvider.DBMigrate\SuperSchnell.CompanyDataProvider.DBMigrate.csproj", "{CD4DEA40-6D6B-443F-AD2E-A6B8EC7F2114}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{12E5D164-3CD4-4D89-9B93-4B0B0AC115EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSchnell.CompanyDataProvider.Web", "SuperSchnell.CompanyDataProvider.Web\SuperSchnell.CompanyDataProvider.Web.csproj", "{686711C5-E344-493B-831D-551F6E6D72FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FB740D8-D91C-45B3-9DAF-DE4F1B4D6DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FB740D8-D91C-45B3-9DAF-DE4F1B4D6DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FB740D8-D91C-45B3-9DAF-DE4F1B4D6DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FB740D8-D91C-45B3-9DAF-DE4F1B4D6DF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B382A618-73DB-4AAE-882A-D48956CCFEEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B382A618-73DB-4AAE-882A-D48956CCFEEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B382A618-73DB-4AAE-882A-D48956CCFEEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B382A618-73DB-4AAE-882A-D48956CCFEEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD4DEA40-6D6B-443F-AD2E-A6B8EC7F2114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD4DEA40-6D6B-443F-AD2E-A6B8EC7F2114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD4DEA40-6D6B-443F-AD2E-A6B8EC7F2114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD4DEA40-6D6B-443F-AD2E-A6B8EC7F2114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{686711C5-E344-493B-831D-551F6E6D72FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{686711C5-E344-493B-831D-551F6E6D72FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{686711C5-E344-493B-831D-551F6E6D72FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{686711C5-E344-493B-831D-551F6E6D72FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B382A618-73DB-4AAE-882A-D48956CCFEEC} = {9881F839-C092-4182-9258-2F411333F351}
+		{CD4DEA40-6D6B-443F-AD2E-A6B8EC7F2114} = {9881F839-C092-4182-9258-2F411333F351}
+		{686711C5-E344-493B-831D-551F6E6D72FD} = {12E5D164-3CD4-4D89-9B93-4B0B0AC115EC}
+	EndGlobalSection
+EndGlobal

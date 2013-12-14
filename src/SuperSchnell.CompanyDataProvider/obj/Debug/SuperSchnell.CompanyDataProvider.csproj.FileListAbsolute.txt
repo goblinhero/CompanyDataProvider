@@ -1,0 +1,11 @@
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\bin\Debug\SuperSchnell.CompanyDataProvider.dll
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\bin\Debug\SuperSchnell.CompanyDataProvider.pdb
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\bin\Debug\FluentNHibernate.dll
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\bin\Debug\Iesi.Collections.dll
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\bin\Debug\NHibernate.dll
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\bin\Debug\NHibernate.Search.dll
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\obj\Debug\SuperSchnell.CompanyDataProvider.csprojResolveAssemblyReference.cache
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\obj\Debug\SuperSchnell.CompanyDataProvider.Errors.resources
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\obj\Debug\SuperSchnell.CompanyDataProvider.csproj.GenerateResource.Cache
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\obj\Debug\SuperSchnell.CompanyDataProvider.dll
+C:\SuperSchnell.CompanyDataProvider\src\SuperSchnell.CompanyDataProvider\obj\Debug\SuperSchnell.CompanyDataProvider.pdb

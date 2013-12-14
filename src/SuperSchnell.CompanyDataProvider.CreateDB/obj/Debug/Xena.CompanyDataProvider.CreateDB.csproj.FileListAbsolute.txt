@@ -1,0 +1,6 @@
+C:\Xena.CompanyDataProvider\src\Xena.CompanyDataProvider.CreateDB\bin\Debug\Xena.CompanyDataProvider.CreateDB.exe.config
+C:\Xena.CompanyDataProvider\src\Xena.CompanyDataProvider.CreateDB\bin\Debug\Xena.CompanyDataProvider.CreateDB.exe
+C:\Xena.CompanyDataProvider\src\Xena.CompanyDataProvider.CreateDB\bin\Debug\Xena.CompanyDataProvider.CreateDB.pdb
+C:\Xena.CompanyDataProvider\src\Xena.CompanyDataProvider.CreateDB\obj\Debug\Xena.CompanyDataProvider.CreateDB.csprojResolveAssemblyReference.cache
+C:\Xena.CompanyDataProvider\src\Xena.CompanyDataProvider.CreateDB\obj\Debug\Xena.CompanyDataProvider.CreateDB.exe
+C:\Xena.CompanyDataProvider\src\Xena.CompanyDataProvider.CreateDB\obj\Debug\Xena.CompanyDataProvider.CreateDB.pdb
