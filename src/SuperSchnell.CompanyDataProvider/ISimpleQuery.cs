@@ -12,4 +12,9 @@ namespace SuperSchnell.CompanyDataProvider
     {
         PagedResultSet<T> Result { get; }
     }
+
+    public interface IDeleteCommand
+    {
+        bool TryExecute(ISession session);
+    }
 }

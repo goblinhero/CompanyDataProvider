@@ -14,7 +14,8 @@ namespace SuperSchnell.CompanyDataProvider.Domain
         {
             return new Address(string.Empty,string.Empty,string.Empty);
         }
-        private Address CreateAddress(string street, string zip, string city)
+
+        public Address CreateAddress(string street, string zip, string city)
         {
             return new Address(street,zip,city);
         }

@@ -99,5 +99,21 @@ namespace SuperSchnell.CompanyDataProvider
                 return true;
             }
         }
+
+        public void WrapDelete(IDeleteCommand deleteCommand)
+        {
+            using (var session = _sessionFactory.OpenSession())
+            using (var tx = session.BeginTransaction())
+            {
+                if (deleteCommand.TryExecute(session))
+                {
+                    tx.Commit();
+                }
+                else
+                {
+                    tx.Rollback();
+                }
+            }
+        }
     }
 }
