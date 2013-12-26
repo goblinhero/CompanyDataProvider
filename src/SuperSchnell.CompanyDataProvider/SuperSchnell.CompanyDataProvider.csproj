@@ -37,6 +37,10 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\lib\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Lucene.Net, Version=2.9.4.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Lucene.Net.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\lib\NHibernate.dll</HintPath>
     </Reference>
@@ -49,17 +53,23 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\IEntity.cs" />
-    <Compile Include="EntityUpdaters\EntityUpdater.cs" />
+    <Compile Include="Domain\Abstract\IEntity.cs" />
+    <Compile Include="Domain\Abstract\IHasId.cs" />
+    <Compile Include="EntityUpdaters\Abstract\BaseEntityUpdater.cs" />
+    <Compile Include="EntityUpdaters\Abstract\IEntityCreator.cs" />
+    <Compile Include="EntityUpdaters\Abstract\IEntityUpdater.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
-    <Compile Include="IFullTextQuery.cs" />
-    <Compile Include="ISimpleQuery.cs" />
+    <Compile Include="Queries\Abstract\CompositeBaseQuery.cs" />
+    <Compile Include="Queries\Abstract\IDeleteCommand.cs" />
+    <Compile Include="Queries\Abstract\IFullTextQuery.cs" />
+    <Compile Include="Queries\Abstract\IPagedSimpleQuery.cs" />
+    <Compile Include="Queries\Abstract\ISimpleQuery.cs" />
     <Compile Include="Mappings\Dto\DanishCompanyDtoMap.cs" />
     <Compile Include="Queries\CompanyQuery.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="Domain\Address.cs" />
     <Compile Include="Domain\DanishCompany.cs" />
-    <Compile Include="Domain\Entity.cs" />
+    <Compile Include="Domain\Abstract\Entity.cs" />
     <Compile Include="Domain\Factory.cs" />
     <Compile Include="Domain\Rules\RelayRule.cs" />
     <Compile Include="Domain\Rules\RuleSet.cs" />

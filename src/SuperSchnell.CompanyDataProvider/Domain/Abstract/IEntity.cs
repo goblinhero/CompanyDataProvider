@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SuperSchnell.CompanyDataProvider.Domain
+namespace SuperSchnell.CompanyDataProvider.Domain.Abstract
 {
     public interface IEntity
     {

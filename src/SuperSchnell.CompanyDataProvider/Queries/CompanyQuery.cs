@@ -2,6 +2,7 @@
 using SuperSchnell.CompanyDataProvider.Contracts;
 using SuperSchnell.CompanyDataProvider.Contracts.Dto;
 using SuperSchnell.CompanyDataProvider.Helpers;
+using SuperSchnell.CompanyDataProvider.Queries.Abstract;
 
 namespace SuperSchnell.CompanyDataProvider.Queries
 {

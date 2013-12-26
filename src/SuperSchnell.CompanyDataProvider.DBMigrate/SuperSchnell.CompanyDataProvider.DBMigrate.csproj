@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="MigrationSteps\MigrationStep001.cs" />
     <Compile Include="MigrationSteps\MigrationStep002.cs" />
+    <Compile Include="MigrationSteps\MigrationStep003.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,12 +1,18 @@
 ﻿using System.Collections.Generic;
+using NHibernate.Search.Attributes;
+using SuperSchnell.CompanyDataProvider.Domain.Abstract;
 using SuperSchnell.CompanyDataProvider.Domain.Rules;
 
 namespace SuperSchnell.CompanyDataProvider.Domain
 {
+    [Indexed]
     public class DanishCompany:Entity<DanishCompany>
     {
+        [Field]
         public virtual string CompanyName { get; set; }
+        [IndexedEmbedded]
         public virtual Address Address { get; set; }
+        [Field]
         public virtual string CVRNumber { get; set; }
 
         protected override IEnumerable<Rules.IRule<DanishCompany>> GetValidationRules()

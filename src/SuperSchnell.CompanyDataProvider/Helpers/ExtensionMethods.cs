@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using NHibernate;
 using SuperSchnell.CompanyDataProvider.Contracts;
 
@@ -18,6 +20,33 @@ namespace SuperSchnell.CompanyDataProvider.Helpers
         public static T FirstOrDefault<T>(this IQueryOver<T> query, ListOptions options)
         {
             return query.Take(1).SingleOrDefault();
+        }
+        public static IEnumerable<string> TrimFreeTextQueryString(this string queryString)
+        {
+            if (string.IsNullOrWhiteSpace(queryString))
+                return new[]{string.Empty};
+            return queryString.Trim()
+                              .Replace("+", "")
+                              .Replace("-", "")
+                              .Replace("*", "")
+                              .Replace("?", "")
+                              .Replace("!", "")
+                              .Replace("(", "")
+                              .Replace(")", "")
+                              .Replace("'", "")
+                              .Replace("\"", "")
+                              .Replace("^", "")
+                              .Replace(".", "")
+                              .Replace(",", "")
+                              .Replace(";", "")
+                              .Replace(":", "")
+                              .Replace("[", "")
+                              .Replace("]", "")
+                              .Replace("~", "")
+                              .Replace("{", "")
+                              .Replace("}", "")
+                              .Replace("|", "")
+                              .Split(new []{" "},StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

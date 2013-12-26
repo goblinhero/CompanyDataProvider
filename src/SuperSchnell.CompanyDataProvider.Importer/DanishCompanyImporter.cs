@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using LumenWorks.Framework.IO.Csv;
+using SuperSchnell.CompanyDataProvider.Domain;
 
 namespace SuperSchnell.CompanyDataProvider.Importer
 {
@@ -23,10 +25,25 @@ namespace SuperSchnell.CompanyDataProvider.Importer
             using (var reader = new StreamReader(_filename, Encoding.GetEncoding(_encoding)))
             {
                 var csvReader = new CsvReader(reader, true, ',');
-                IEnumerable<string> errors;
-                while (csvReader.ReadNextRecord())
+                int count = 0;
+                var sessionHelper = new SessionHelper();
+
+                bool moreRecords = true;
+                while (moreRecords)
                 {
-                    _sessionHelper.WrapCreate(new DanishCompanyCreator(csvReader),out errors);
+                    var companyList = new List<DanishCompany>(100);
+                    for (int i = 0; i < 100; i++)
+                    {
+                        if (!csvReader.ReadNextRecord() || csvReader.EndOfStream)
+                        {
+                            moreRecords = false;
+                            break;
+                        }
+                        companyList.Add(new DanishCompanyCreator(csvReader).CreateNew());
+                    }
+                    sessionHelper.BulkCreate(companyList);
+                    count += companyList.Count;
+                    Console.WriteLine("Inserted {0} Danish companies", count);
                 }
             }
         }

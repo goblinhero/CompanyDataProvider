@@ -1,21 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
+using NHibernate.Criterion;
 using NHibernate.Event;
+using NHibernate.Linq;
 using NHibernate.Search;
 using NHibernate.Search.Event;
+using NHibernate.Util;
+using SuperSchnell.CompanyDataProvider.Contracts;
 using SuperSchnell.CompanyDataProvider.Domain;
+using SuperSchnell.CompanyDataProvider.Domain.Abstract;
 using SuperSchnell.CompanyDataProvider.EntityUpdaters;
+using SuperSchnell.CompanyDataProvider.EntityUpdaters.Abstract;
+using SuperSchnell.CompanyDataProvider.Helpers;
 using SuperSchnell.CompanyDataProvider.Mappings;
+using SuperSchnell.CompanyDataProvider.Queries.Abstract;
 
 namespace SuperSchnell.CompanyDataProvider
 {
     public class SessionHelper
     {
         private static readonly ISessionFactory _sessionFactory;
+
         static SessionHelper()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["CompanyDatabase"];
@@ -30,6 +40,7 @@ namespace SuperSchnell.CompanyDataProvider
             configuration.SetListener(ListenerType.PostInsert, new FullTextIndexEventListener());
             _sessionFactory = configuration.BuildSessionFactory();
         }
+
         public void WrapQuery(ISimpleQuery query)
         {
             using (var session = _sessionFactory.OpenSession())
@@ -39,6 +50,7 @@ namespace SuperSchnell.CompanyDataProvider
                 tx.Commit();
             }
         }
+
         public void WrapQuery(IFullQuery query)
         {
             using (var session = _sessionFactory.OpenSession())
@@ -49,7 +61,17 @@ namespace SuperSchnell.CompanyDataProvider
                     query.Execute(fullTextSession);
                     tx.Commit();
                 }
-                
+
+            }
+        }
+
+        public void BulkCreate<TEntity>(IEnumerable<TEntity> entities)
+        {
+            using (var session = _sessionFactory.OpenStatelessSession())
+            using (var tx = session.BeginTransaction())
+            {
+                entities.ForEach(e => session.Insert(e));
+                tx.Commit();
             }
         }
 
@@ -86,7 +108,7 @@ namespace SuperSchnell.CompanyDataProvider
                 }
                 if (entity.Version != updater.Version)
                 {
-                    errors = new[] {string.Format("{0}{1}{2}",Errors.Domain_Save_Wrong_Version, entity.Version,updater.Version)};
+                    errors = new[] { string.Format("{0}{1}{2}", Errors.Domain_Save_Wrong_Version, entity.Version, updater.Version) };
                     tx.Rollback();
                     return false;
                 }
@@ -103,17 +125,75 @@ namespace SuperSchnell.CompanyDataProvider
         public void WrapDelete(IDeleteCommand deleteCommand)
         {
             using (var session = _sessionFactory.OpenSession())
-            using (var tx = session.BeginTransaction())
             {
-                if (deleteCommand.TryExecute(session))
+                var fullTextSession = Search.CreateFullTextSession(session);
+                using (var tx = fullTextSession.BeginTransaction())
                 {
-                    tx.Commit();
+                    if (deleteCommand.TryExecute(fullTextSession))
+                    {
+                        tx.Commit();
+                    }
+                    else
+                    {
+                        tx.Rollback();
+                    }
                 }
-                else
-                {
-                    tx.Rollback();
-                }
+
             }
         }
+
+        public void ReIndex<TEntity>() where TEntity : class
+        {
+            var purgeQuery = new PurgeAndCountCompanyQuery<DanishCompany>();
+            WrapQuery(purgeQuery);
+            int count = purgeQuery.Count;
+            var currentPage = 0;
+            const int pageSize = 1000;
+            while (currentPage * pageSize < count)
+            {
+                WrapQuery(new PagedReIndexQuery<DanishCompany>(currentPage, pageSize));
+                currentPage++;
+                Console.WriteLine("Reindexed {0} companies", currentPage * pageSize);
+            }
+        }
+    }
+
+    public class PagedReIndexQuery<TEntity> : IFullQuery
+        where TEntity : class
+    {
+        private readonly int _currentPage;
+        private readonly int _pageSize;
+
+        public PagedReIndexQuery(int currentPage, int pageSize)
+        {
+            _currentPage = currentPage;
+            _pageSize = pageSize;
+        }
+
+        public void Execute(IFullTextSession session)
+        {
+            var entities = session.QueryOver<TEntity>()
+                .Skip(_currentPage * _pageSize)
+                .Take(_pageSize)
+                .List();
+            foreach (var entity in entities)
+            {
+                session.Index(entity);
+            }
+        }
+    }
+
+    public class PurgeAndCountCompanyQuery<TEntity> : IFullQuery
+        where TEntity : class
+    {
+        public void Execute(IFullTextSession session)
+        {
+            session.PurgeAll(typeof(TEntity));
+            Count = session.QueryOver<TEntity>()
+                .ToRowCountQuery()
+                .SingleOrDefault<int>();
+        }
+
+        public int Count { get; private set; }
     }
 }

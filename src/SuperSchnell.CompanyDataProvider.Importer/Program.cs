@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using SuperSchnell.CompanyDataProvider.Domain;
 using SuperSchnell.CompanyDataProvider.Importer.Commands;
 
 namespace SuperSchnell.CompanyDataProvider.Importer
@@ -36,7 +37,8 @@ namespace SuperSchnell.CompanyDataProvider.Importer
             var encoding = splits[encodingKey];
             var sessionHelper = new SessionHelper();
             sessionHelper.WrapDelete(new TruncateDanishCompaniesCommand());
-            new DanishCompanyImporter(filename, encoding,sessionHelper).Execute();
+            new DanishCompanyImporter(filename, encoding, sessionHelper).Execute();
+            sessionHelper.ReIndex<DanishCompany>();
         }
     }
 }

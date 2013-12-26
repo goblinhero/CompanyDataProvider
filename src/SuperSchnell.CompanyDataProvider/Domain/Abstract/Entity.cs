@@ -1,11 +1,13 @@
 using System.Collections.Generic;
+using NHibernate.Search.Attributes;
 using SuperSchnell.CompanyDataProvider.Domain.Rules;
 
-namespace SuperSchnell.CompanyDataProvider.Domain
+namespace SuperSchnell.CompanyDataProvider.Domain.Abstract
 {
-    public abstract class Entity<T>:IEntity
+    public abstract class Entity<T>:IEntity, IHasId
         where T:class 
     {
+        [DocumentId]
         public virtual long? Id { get; protected set; }
         public virtual int Version { get; protected set; }
         public virtual bool IsValid(out IEnumerable<string> validationErrors)

@@ -1,3 +1,5 @@
+using NHibernate.Search.Attributes;
+
 namespace SuperSchnell.CompanyDataProvider.Domain
 {
     public class Address
@@ -13,8 +15,11 @@ namespace SuperSchnell.CompanyDataProvider.Domain
             City = city??string.Empty;
         }
 
+        [Field]
         public string Street { get; private set; }
+        [Field]
         public string Zip { get; private set; }
+        [Field]
         public string City { get; private set; }
     }
 }
