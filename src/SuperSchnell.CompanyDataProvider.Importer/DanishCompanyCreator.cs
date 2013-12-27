@@ -22,12 +22,14 @@ namespace SuperSchnell.CompanyDataProvider.Importer
             var entity =_factory.CreateDanishCompany();
             entity.CVRNumber = _csvReader["cvrnr"];
             entity.CompanyName = _csvReader["navn_tekst"];
+            entity.Phone = _csvReader["telefonnummer_kontaktoplysning"];
+            entity.Email = _csvReader["email_kontaktoplysning"];
             entity.Address = CreateAddress();
             return entity;
         }
         private Address CreateAddress()
         {
-            return _factory.CreateAddress(CreateStreet(), _csvReader["beliggenhedsadresse_postnr"], _csvReader["beliggenhedsadresse_postdistrikt"]);
+            return _factory.CreateAddress(CreateStreet(), _csvReader["beliggenhedsadresse_postnr"], _csvReader["beliggenhedsadresse_postdistrikt"], _csvReader["beliggenhedsadresse_bynavn"], _csvReader["beliggenhedsadresse_coNavn"]);
         }
 
         private string CreateStreet()

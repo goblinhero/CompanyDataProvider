@@ -11,11 +11,15 @@ namespace SuperSchnell.CompanyDataProvider.Mappings
             Version(m => m.Version).Not.Nullable();
             Map(m => m.CVRNumber).Not.Nullable();
             Map(m => m.CompanyName).Not.Nullable();
+            Map(m => m.Phone).Not.Nullable();
+            Map(m => m.Email).Not.Nullable();
             Component(m => m.Address, a =>
                 {
                     a.Map(m => m.Street).Not.Nullable();
                     a.Map(m => m.Zip).Not.Nullable();
                     a.Map(m => m.City).Not.Nullable();
+                    a.Map(m => m.PlaceName).Not.Nullable();
+                    a.Map(m => m.CoName).Not.Nullable();
                 });
         }
     }

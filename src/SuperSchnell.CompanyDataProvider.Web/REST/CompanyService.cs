@@ -20,7 +20,7 @@ namespace SuperSchnell.CompanyDataProvider.Web.REST
         {
             if (string.IsNullOrEmpty(search.QueryString))
             {
-                return Any(new CompanySimpleSearch {Page = search.Page, PageSize = search.PageSize});
+                return Any(new CompanySimpleSearch { Page = search.Page, PageSize = search.PageSize });
             }
             var query = new WildcardCompanySearchQuery(search.QueryString.ToLower(), search.ListOptions);
             _sessionHelper.WrapQuery(query);
@@ -28,19 +28,23 @@ namespace SuperSchnell.CompanyDataProvider.Web.REST
         }
         public object Any(CompanyProxySearch search)
         {
-            if (string.IsNullOrWhiteSpace(string.Format("{0}{1}{2}{3}{4}", search.CVRNumber, search.CompanyName, search.Street, search.Zip, search.City)))
+            if (string.IsNullOrWhiteSpace(string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}", search.CVRNumber, search.CompanyName, search.Street, search.Zip, search.City, search.Phone, search.Email, search.PlaceName, search.CoName)))
             {
-                return Any(new CompanySimpleSearch {Page = search.Page, PageSize = search.PageSize});
+                return Any(new CompanySimpleSearch { Page = search.Page, PageSize = search.PageSize });
             }
             var query = new ProxyCompanySearchQuery(new DanishCompanyDto
             {
-                CompanyName = search.CompanyName.ToLower(),
-                CVRNumber = search.CVRNumber.ToLower(),
+                CompanyName = (search.CompanyName ?? string.Empty).ToLower(),
+                CVRNumber = (search.CVRNumber ?? string.Empty).ToLower(),
+                Phone = (search.Phone ?? string.Empty).ToLower(),
+                Email = (search.Email ?? string.Empty).ToLower(),
                 Address = new AddressDto
                 {
-                    City = search.City.ToLower(),
-                    Street = search.Street.ToLower(),
-                    Zip = search.Zip.ToLower(),
+                    City = (search.City ?? string.Empty).ToLower(),
+                    Street = (search.Street ?? string.Empty).ToLower(),
+                    Zip = (search.Zip ?? string.Empty).ToLower(),
+                    PlaceName = (search.PlaceName ?? string.Empty).ToLower(),
+                    CoName = (search.CoName ?? string.Empty).ToLower(),
                 }
             }, search.ListOptions);
             _sessionHelper.WrapQuery(query);

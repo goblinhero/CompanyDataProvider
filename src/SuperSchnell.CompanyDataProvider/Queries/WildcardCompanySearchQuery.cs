@@ -23,7 +23,7 @@ namespace SuperSchnell.CompanyDataProvider.Queries
             {
                 CreateGeneralWildcardSearch("CVRNumber"),
                 CreateGeneralWildcardSearch("CompanyName"),
-                CreateGeneralWildcardSearch("CVRNumber","CompanyName", "Address.Street","Address.Zip","Address.City")
+                CreateGeneralWildcardSearch("CVRNumber","CompanyName", "Address.Street","Address.Zip","Address.City","Address.PlaceName","Address.CoName")
             };
         }
 

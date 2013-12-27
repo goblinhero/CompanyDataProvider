@@ -35,10 +35,43 @@ namespace SuperSchnell.CompanyDataProvider.Importer
             }
             var filename = splits[fileNameKey];
             var encoding = splits[encodingKey];
+            var monitor = new PerfMon();
             var sessionHelper = new SessionHelper();
+            monitor.AddMark("SessionHelper initialized");
             sessionHelper.WrapDelete(new TruncateDanishCompaniesCommand());
+            monitor.AddMark("DB truncated");
             new DanishCompanyImporter(filename, encoding, sessionHelper).Execute();
+            monitor.AddMark("Companies import");
             sessionHelper.ReIndex<DanishCompany>();
+            monitor.AddMark("Companies indexing");
+            monitor.PrintSummary();
+            Console.ReadKey();
+        }
+    }
+
+    public class PerfMon
+    {
+        private readonly IList<Tuple<string,DateTime>> _marks = new List<Tuple<string, DateTime>>();
+
+        public PerfMon()
+        {
+            Start = DateTime.Now;
+        }
+
+        public DateTime Start { get; set; }
+
+        public void AddMark(string mark)
+        {
+            _marks.Add(new Tuple<string, DateTime>(mark, DateTime.Now));
+        }
+
+        public void PrintSummary()
+        {
+            var firstMark = _marks.First();
+            foreach (var mark in _marks)
+            {
+                Console.WriteLine("{0} started at {1:T} and took {2:####} seconds", mark.Item1,mark.Item2,mark.Item2.Subtract(firstMark.Item2).TotalSeconds);
+            }
         }
     }
 }

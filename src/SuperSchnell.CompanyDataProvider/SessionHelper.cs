@@ -5,18 +5,13 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
-using NHibernate.Criterion;
 using NHibernate.Event;
 using NHibernate.Linq;
 using NHibernate.Search;
 using NHibernate.Search.Event;
-using NHibernate.Util;
-using SuperSchnell.CompanyDataProvider.Contracts;
 using SuperSchnell.CompanyDataProvider.Domain;
 using SuperSchnell.CompanyDataProvider.Domain.Abstract;
-using SuperSchnell.CompanyDataProvider.EntityUpdaters;
 using SuperSchnell.CompanyDataProvider.EntityUpdaters.Abstract;
-using SuperSchnell.CompanyDataProvider.Helpers;
 using SuperSchnell.CompanyDataProvider.Mappings;
 using SuperSchnell.CompanyDataProvider.Queries.Abstract;
 
@@ -38,6 +33,7 @@ namespace SuperSchnell.CompanyDataProvider
                 .BuildConfiguration();
             configuration.SetListener(ListenerType.PostUpdate, new FullTextIndexEventListener());
             configuration.SetListener(ListenerType.PostInsert, new FullTextIndexEventListener());
+            configuration.SetProperty("adonet.batch_size", "100");
             _sessionFactory = configuration.BuildSessionFactory();
         }
 
@@ -61,7 +57,6 @@ namespace SuperSchnell.CompanyDataProvider
                     query.Execute(fullTextSession);
                     tx.Commit();
                 }
-
             }
         }
 
@@ -102,13 +97,13 @@ namespace SuperSchnell.CompanyDataProvider
                 var entity = session.Get<TEntity>(updater.Id);
                 if (entity == null)
                 {
-                    errors = new[] { string.Format(Errors.Domain_Save_Entity_Not_Found, updater.Id) };
+                    errors = new[] {string.Format(Errors.Domain_Save_Entity_Not_Found, updater.Id)};
                     tx.Rollback();
                     return false;
                 }
                 if (entity.Version != updater.Version)
                 {
-                    errors = new[] { string.Format("{0}{1}{2}", Errors.Domain_Save_Wrong_Version, entity.Version, updater.Version) };
+                    errors = new[] {string.Format("{0}{1}{2}", Errors.Domain_Save_Wrong_Version, entity.Version, updater.Version)};
                     tx.Rollback();
                     return false;
                 }
@@ -138,7 +133,6 @@ namespace SuperSchnell.CompanyDataProvider
                         tx.Rollback();
                     }
                 }
-
             }
         }
 
@@ -149,11 +143,11 @@ namespace SuperSchnell.CompanyDataProvider
             int count = purgeQuery.Count;
             var currentPage = 0;
             const int pageSize = 1000;
-            while (currentPage * pageSize < count)
+            while (currentPage*pageSize < count)
             {
                 WrapQuery(new PagedReIndexQuery<DanishCompany>(currentPage, pageSize));
                 currentPage++;
-                Console.WriteLine("Reindexed {0} companies", currentPage * pageSize);
+                Console.WriteLine("Reindexed {0} companies", currentPage*pageSize);
             }
         }
     }
@@ -173,7 +167,7 @@ namespace SuperSchnell.CompanyDataProvider
         public void Execute(IFullTextSession session)
         {
             var entities = session.QueryOver<TEntity>()
-                .Skip(_currentPage * _pageSize)
+                .Skip(_currentPage*_pageSize)
                 .Take(_pageSize)
                 .List();
             foreach (var entity in entities)
@@ -186,14 +180,14 @@ namespace SuperSchnell.CompanyDataProvider
     public class PurgeAndCountCompanyQuery<TEntity> : IFullQuery
         where TEntity : class
     {
+        public int Count { get; private set; }
+
         public void Execute(IFullTextSession session)
         {
-            session.PurgeAll(typeof(TEntity));
+            session.PurgeAll(typeof (TEntity));
             Count = session.QueryOver<TEntity>()
                 .ToRowCountQuery()
                 .SingleOrDefault<int>();
         }
-
-        public int Count { get; private set; }
     }
 }

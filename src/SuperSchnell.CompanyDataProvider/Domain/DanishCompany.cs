@@ -14,8 +14,12 @@ namespace SuperSchnell.CompanyDataProvider.Domain
         public virtual Address Address { get; set; }
         [Field]
         public virtual string CVRNumber { get; set; }
+        [Field]
+        public virtual string Email { get; set; }
+        [Field]
+        public virtual string Phone { get; set; }
 
-        protected override IEnumerable<Rules.IRule<DanishCompany>> GetValidationRules()
+        protected override IEnumerable<IRule<DanishCompany>> GetValidationRules()
         {
             return new[]
                 {

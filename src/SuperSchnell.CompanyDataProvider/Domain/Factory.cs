@@ -12,12 +12,12 @@ namespace SuperSchnell.CompanyDataProvider.Domain
 
         private Address CreateBlankAddress()
         {
-            return new Address(string.Empty,string.Empty,string.Empty);
+            return new Address(string.Empty,string.Empty,string.Empty,string.Empty,string.Empty);
         }
 
-        public Address CreateAddress(string street, string zip, string city)
+        public Address CreateAddress(string street, string zip, string city, string placeName, string coName)
         {
-            return new Address(street,zip,city);
+            return new Address(street,zip,city,placeName,coName);
         }
     }
 }

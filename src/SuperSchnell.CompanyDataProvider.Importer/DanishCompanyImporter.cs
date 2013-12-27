@@ -31,8 +31,8 @@ namespace SuperSchnell.CompanyDataProvider.Importer
                 bool moreRecords = true;
                 while (moreRecords)
                 {
-                    var companyList = new List<DanishCompany>(100);
-                    for (int i = 0; i < 100; i++)
+                    var companyList = new List<DanishCompany>(1000);
+                    for (int i = 0; i < 1000; i++)
                     {
                         if (!csvReader.ReadNextRecord() || csvReader.EndOfStream)
                         {
