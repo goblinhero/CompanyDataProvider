@@ -6,4 +6,8 @@ namespace SuperSchnell.CompanyDataProvider.Queries.Abstract
     {
         PagedResultSet<T> Result { get; }
     }
+    public interface IPagedFullQuery<T> : IFullQuery
+    {
+        PagedResultSet<T> Result { get; }
+    }
 }

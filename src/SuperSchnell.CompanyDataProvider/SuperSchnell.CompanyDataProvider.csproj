@@ -65,6 +65,8 @@
     <Compile Include="Queries\Abstract\IPagedSimpleQuery.cs" />
     <Compile Include="Queries\Abstract\ISimpleQuery.cs" />
     <Compile Include="Mappings\Dto\DanishCompanyDtoMap.cs" />
+    <Compile Include="Queries\ProxyCompanySearchQuery.cs" />
+    <Compile Include="Queries\WildcardCompanySearchQuery.cs" />
     <Compile Include="Queries\CompanyQuery.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="Domain\Address.cs" />

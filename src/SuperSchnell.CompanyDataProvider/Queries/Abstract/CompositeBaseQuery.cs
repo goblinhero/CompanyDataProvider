@@ -13,16 +13,25 @@ using SuperSchnell.CompanyDataProvider.Helpers;
 
 namespace SuperSchnell.CompanyDataProvider.Queries.Abstract
 {
-    public abstract class CompositeBaseQuery<TEntity, TReturnType>
+    public abstract class CompositeBaseQuery<TEntity, TReturnType> : IPagedFullQuery<TReturnType>
         where TEntity : IHasId
         where TReturnType : EntityDto
     {
+        private readonly ListOptions _listOptions;
         protected readonly IEnumerable<string> _searchTerms;
 
-        protected CompositeBaseQuery(string searchTerm)
+        protected CompositeBaseQuery(string searchTerm, ListOptions listOptions)
         {
+            _listOptions = listOptions;
             _searchTerms = searchTerm.TrimFreeTextQueryString();
         }
+
+        public void Execute(IFullTextSession session)
+        {
+            Result = GetPagedResults(session, _listOptions);
+        }
+
+        public PagedResultSet<TReturnType> Result { get; set; }
 
         protected abstract IEnumerable<Query> CreateQueries();
 
@@ -47,10 +56,10 @@ namespace SuperSchnell.CompanyDataProvider.Queries.Abstract
             return wildCardSearch.Parse(wildcardSearch);
         }
 
-        public PagedResultSet<TReturnType> GetPagedResults(IFullTextSession session, ListOptions options)
+        private PagedResultSet<TReturnType> GetPagedResults(IFullTextSession session, ListOptions options)
         {
             var fullResultIds = GetFullResultIds(session);
-            var idsToFind =  fullResultIds.Skip(options.Page * options.PageSize).Take(options.PageSize).ToArray();
+            var idsToFind = fullResultIds.Skip(options.Page*options.PageSize).Take(options.PageSize).ToArray();
             var entities = session.QueryOver<TReturnType>()
                 .WhereRestrictionOn(tr => tr.Id).IsIn(idsToFind).List().ToDictionary(p => p.Id.Value, p => p);
             var idsFound = idsToFind.Intersect(entities.Keys);
@@ -64,20 +73,20 @@ namespace SuperSchnell.CompanyDataProvider.Queries.Abstract
                 .WhereRestrictionOn(t => t.Id).IsIn(idsToFind);
         }
 
-        protected virtual List<long> FindInitialResults(IFullTextSession session)
+        protected virtual IList<long> FindInitialResults(IFullTextSession session)
         {
             return new List<long>();
         }
 
-        public long[] GetFullResultIds(IFullTextSession session)
+        private long[] GetFullResultIds(IFullTextSession session)
         {
-            var result = FindInitialResults(session);
+            var result = FindInitialResults(session).ToList();
             var queries = CreateQueries().ToList();
             var usedQueries = new List<Query>();
             foreach (var query in queries)
             {
                 var executingQuery = CreateBooleanQuery(query, usedQueries);
-                var luceneQuery = session.CreateFullTextQuery(executingQuery, typeof(TEntity));
+                var luceneQuery = session.CreateFullTextQuery(executingQuery, typeof (TEntity));
                 var entitiesToAdd =
                     luceneQuery.SetProjection(ProjectionConstants.ID).List<object[]>();
                 var newUniques = entitiesToAdd.SelectMany(r => r).OfType<long>().Except(result);

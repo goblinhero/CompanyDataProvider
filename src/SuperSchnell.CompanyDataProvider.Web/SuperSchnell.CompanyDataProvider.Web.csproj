@@ -83,7 +83,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="REST\CompanyService.cs" />
+    <Compile Include="REST\Requests\Abstract\BasePagedRequest.cs" />
+    <Compile Include="REST\Requests\CompanyProxySearch.cs" />
     <Compile Include="REST\Requests\CompanySimpleSearch.cs" />
+    <Compile Include="REST\Requests\CompanyWildcardSearch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">
